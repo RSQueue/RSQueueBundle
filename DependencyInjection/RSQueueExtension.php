@@ -1,22 +1,35 @@
 <?php
 
-namespace Mmoreram\RSQueueBundle\DependencyInjection;
+/*
+ * This file is part of the RSQueue library
+ *
+ * Copyright (c) 2016 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
+namespace RSQueueBundle\DependencyInjection;
+
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * This is the class that loads and manages your bundle configuration.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
 class RSQueueExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -38,25 +51,28 @@ class RSQueueExtension extends Extension
             $config['server']['redis']
         );
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader(
+            $container,
+            new FileLocator(__DIR__ . '/../Resources/config')
+        );
+
         $loader->load('services.yml');
+        $loader->load('collector.yml');
+        $loader->load('redis.yml');
+        $loader->load('serializers.yml');
 
         // BC sf < 2.6
         $definition = $container->getDefinition('rs_queue.serializer');
-        if (method_exists($definition, 'setFactory')) {
-            $definition->setFactory(array(new Reference('rs_queue.serializer.factory'), 'get'));
-        } else {
-            $definition->setFactoryService('rs_queue.serializer.factory');
-            $definition->setFactoryMethod('get');
-        }
+        $definition->setFactory([
+            new Reference('rs_queue.serializer.factory'),
+            'get',
+        ]);
 
         // BC sf < 2.6
         $definition = $container->getDefinition('rs_queue.redis');
-        if (method_exists($definition, 'setFactory')) {
-            $definition->setFactory(array(new Reference('rs_queue.redis.factory'), 'get'));
-        } else {
-            $definition->setFactoryService('rs_queue.redis.factory');
-            $definition->setFactoryMethod('get');
-        }
+        $definition->setFactory([
+            new Reference('rs_queue.redis.factory'),
+            'get',
+        ]);
     }
 }

@@ -1,0 +1,8 @@
+services:
+
+    rs_queue.data_collector:
+        class: Mmoreram\RSQueueBundle\Collector\RSQueueCollector
+        tags:
+            - { name: data_collector, template: "RSQueueBundle:Collector:rsqueue", id: "rsqueue_collector" }
+            - { name: kernel.event_listener, event: rsqueue.producer, method: onProducerAction }
+            - { name: kernel.event_listener, event: rsqueue.publisher, method: onPublisherAction }

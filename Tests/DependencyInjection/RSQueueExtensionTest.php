@@ -1,21 +1,23 @@
 <?php
 
 /*
- * This file is part of the FOSRestBundle package.
+ * This file is part of the RSQueue library
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * Copyright (c) 2016 Marc Morera
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
  */
 
-namespace Mmoreram\RSQueueBundle\Tests\DependencyInjection;
+namespace RSQueueBundle\Tests\DependencyInjection;
 
-use Mmoreram\RSQueueBundle\DependencyInjection\RSQueueExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
-use Symfony\Component\DependencyInjection\Reference;
+
+use RSQueueBundle\DependencyInjection\RSQueueExtension;
 
 /**
  * RSQueueExtension test.
@@ -34,14 +36,21 @@ class RSQueueExtensionTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
+    /**
+     * Setup.
+     */
     public function setUp()
     {
         $this->container = new ContainerBuilder();
         $this->extension = new RSQueueExtension();
     }
 
-    public function testExtension() {
-        $config = array();
+    /**
+     * Test extension.
+     */
+    public function testExtension()
+    {
+        $config = [];
         $this->extension->load($config, $this->container);
     }
 }

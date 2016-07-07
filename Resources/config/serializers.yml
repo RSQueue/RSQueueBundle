@@ -1,0 +1,9 @@
+services:
+
+    rs_queue.serializer.factory:
+        class: Mmoreram\RSQueue\Factory\SerializerFactory
+        arguments:
+            serializerClass: %rs_queue.serializer.class%
+
+    rs_queue.serializer:
+        class: Mmoreram\RSQueue\SerializerInterface

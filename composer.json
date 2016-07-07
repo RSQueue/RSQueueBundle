@@ -12,20 +12,36 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "symfony/event-dispatcher": "~2.3|~3.0",
-        "symfony/framework-bundle": "~2.3|~3.0",
-        "doctrine/annotations": "^1.1.2",
-        "symfony/console": "~2.3|~3.0",
+        "php": ">=7.0",
         "symfony/config": "~2.3|~3.0",
         "symfony/http-kernel": "~2.3|~3.0",
-        "symfony/dependency-injection": "~2.3|~3.0"
+        "symfony/http-foundation": "^3.0",
+        "symfony/dependency-injection": "~2.3|~3.0",
+        "rsqueue/rsqueue": "dev-master"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "~2.7"
+        "friendsofphp/php-cs-fixer": "1.11",
+        "mmoreram/php-formatter": "1.1.0",
+        "phpunit/phpunit": "5.4.4"
     },
     "autoload": {
-        "psr-4": { "Mmoreram\\RSQueueBundle\\": "" }
+        "psr-4": {
+            "RSQueueBundle\\": ""
+        }
+    },
+    "scripts": {
+        "fix-code": [
+            "vendor/bin/php-cs-fixer fix --config-file=.php_cs || true",
+            "vendor/bin/php-formatter f:u:s Collector || true",
+            "vendor/bin/php-formatter f:u:s DependencyInjection || true",
+            "vendor/bin/php-formatter f:u:s Tests || true",
+            "vendor/bin/php-formatter f:h:f Collector || true",
+            "vendor/bin/php-formatter f:h:f DependencyInjection || true",
+            "vendor/bin/php-formatter f:h:f Tests || true"
+        ],
+        "test": [
+            "vendor/phpunit/phpunit/phpunit"
+        ]
     },
     "extra": {
         "branch-alias": {
