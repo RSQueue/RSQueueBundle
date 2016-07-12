@@ -1,6 +1,6 @@
 <?php
 
-namespace Mmoreram\RSQueueBundle;
+namespace RSQueueBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
