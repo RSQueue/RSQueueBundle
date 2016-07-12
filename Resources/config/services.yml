@@ -14,14 +14,14 @@ services:
             serializer: "@rs_queue.serializer"
 
     rs_queue.consumer:
-        class: RSQueueBundle\Services\Consumer
+        class: RSQueue\Services\Consumer
         parent: rs_queue.service
 
     rs_queue.producer:
-        class: RSQueueBundle\Services\Producer
+        class: RSQueue\Services\Producer
         parent: rs_queue.service
 
     rs_queue.publisher:
-        class: RSQueueBundle\Services\Publisher
+        class: RSQueue\Services\Publisher
         parent: rs_queue.service
 
