@@ -1,7 +1,7 @@
 services:
 
-    rs_queue.resolver.queuealias:
-        class: Mmoreram\RSQueue\Resolver\QueueAliasResolver
+    rs_queue.resolver.queue_alias:
+        class: RSQueue\Resolver\QueueAliasResolver
         arguments:
             queueAliases: %rs_queue.queues%
 
@@ -14,14 +14,14 @@ services:
             serializer: "@rs_queue.serializer"
 
     rs_queue.consumer:
-        class: Mmoreram\RSQueueBundle\Services\Consumer
+        class: RSQueueBundle\Services\Consumer
         parent: rs_queue.service
 
     rs_queue.producer:
-        class: Mmoreram\RSQueueBundle\Services\Producer
+        class: RSQueueBundle\Services\Producer
         parent: rs_queue.service
 
     rs_queue.publisher:
-        class: Mmoreram\RSQueueBundle\Services\Publisher
+        class: RSQueueBundle\Services\Publisher
         parent: rs_queue.service
 
