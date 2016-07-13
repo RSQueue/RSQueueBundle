@@ -41,7 +41,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Queue alias</th>
                         <th>Queue name</th>
                         <th>Payload</th>
                     </tr>
@@ -49,7 +48,6 @@
                 <tbody>
                     {% for line in collector.producer %}
                         <tr>
-                            <td>{{ line.alias }}</td>
                             <td>{{ line.queue }}</td>
                             <td>{{ line.payload }}</td>
                         </tr>
@@ -63,7 +61,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Queue alias</th>
                         <th>Queue name</th>
                         <th>Payload</th>
                     </tr>
@@ -71,7 +68,6 @@
                 <tbody>
                     {% for line in collector.publisher %}
                         <tr>
-                            <td>{{ line.alias }}</td>
                             <td>{{ line.queue }}</td>
                             <td>{{ line.payload }}</td>
                         </tr>

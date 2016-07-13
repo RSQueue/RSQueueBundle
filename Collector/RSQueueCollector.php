@@ -60,7 +60,6 @@ class RSQueueCollector extends DataCollector
         $this->data['prod'][] = [
             'payload' => $event->getPayloadSerialized(),
             'queue' => $event->getQueueName(),
-            'alias' => $event->getQueueAlias(),
         ];
 
         return $this;
@@ -81,7 +80,6 @@ class RSQueueCollector extends DataCollector
         $this->data['publ'][] = [
             'payload' => $event->getPayloadSerialized(),
             'queue' => $event->getChannelName(),
-            'alias' => $event->getChannelAlias(),
         ];
 
         return $this;
