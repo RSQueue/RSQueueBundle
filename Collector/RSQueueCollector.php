@@ -126,7 +126,7 @@ class RSQueueCollector extends DataCollector
     }
 
     /**
-     * Reset collector
+     * Reset collector.
      */
     public function reset()
     {

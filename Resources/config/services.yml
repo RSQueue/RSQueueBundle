@@ -3,15 +3,15 @@ services:
     rs_queue.resolver.queue_alias:
         class: RSQueue\Resolver\QueueAliasResolver
         arguments:
-            queueAliases: %rs_queue.queues%
+            - "%rs_queue.queues%"
 
     rs_queue.service:
         abstract: true
         arguments:
-            eventDispatcher: "@event_dispatcher"
-            redis: "@rs_queue.redis"
-            queueNamesResolver: "@rs_queue.resolver.queue_alias"
-            serializer: "@rs_queue.serializer"
+            - "@event_dispatcher"
+            - "@rs_queue.redis"
+            - "@rs_queue.resolver.queue_alias"
+            - "@rs_queue.serializer"
 
     rs_queue.consumer:
         class: RSQueue\Services\Consumer

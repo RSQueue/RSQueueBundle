@@ -3,7 +3,7 @@ services:
     rs_queue.serializer.factory:
         class: RSQueue\Factory\SerializerFactory
         arguments:
-            serializerClass: %rs_queue.serializer.class%
+            - "%rs_queue.serializer.class%"
 
     rs_queue.serializer:
         class: RSQueue\SerializerInterface

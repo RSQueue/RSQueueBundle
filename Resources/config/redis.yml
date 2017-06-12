@@ -3,7 +3,7 @@ services:
     rs_queue.redis.factory:
         class: RSQueue\Factory\RedisFactory
         arguments:
-            redis: %rs_queue.server.redis%
+            - "%rs_queue.server.redis%"
 
     rs_queue.redis:
         class: Redis
