@@ -1,9 +1,12 @@
 services:
 
-    rs_queue.redis.factory:
-        class: RSQueue\Factory\RedisFactory
+    rs_queue.redis_factory:
+        class: RSQueue\RedisFactory
         arguments:
             - "%rs_queue.server.redis%"
 
     rs_queue.redis:
-        class: Redis
+        class: StdObject
+        factory:
+            - "@rs_queue.redis_factory"
+            - create

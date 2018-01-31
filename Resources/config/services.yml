@@ -16,12 +16,14 @@ services:
     rs_queue.consumer:
         class: RSQueue\Services\Consumer
         parent: rs_queue.service
+        public: true
 
     rs_queue.producer:
         class: RSQueue\Services\Producer
         parent: rs_queue.service
+        public: true
 
     rs_queue.publisher:
         class: RSQueue\Services\Publisher
         parent: rs_queue.service
-
+        public: true
