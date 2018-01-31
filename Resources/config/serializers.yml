@@ -1,9 +1,12 @@
 services:
 
     rs_queue.serializer.factory:
-        class: RSQueue\Factory\SerializerFactory
+        class: RSQueue\Serializer\SerializerFactory
         arguments:
             - "%rs_queue.serializer.class%"
 
     rs_queue.serializer:
-        class: RSQueue\SerializerInterface
+        class: RSQueue\Serializer\Serializer
+        factory:
+            - "@rs_queue.serializer.factory"
+            - "create"

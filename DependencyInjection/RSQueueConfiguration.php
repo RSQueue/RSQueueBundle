@@ -3,7 +3,7 @@
 /*
  * This file is part of the RSQueue library
  *
- * Copyright (c) 2016 Marc Morera
+ * Copyright (c) 2016 - now() Marc Morera
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,24 +15,21 @@
 
 namespace RSQueueBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Mmoreram\BaseBundle\DependencyInjection\BaseConfiguration;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
- * This is the class that validates and merges configuration from your app/config files.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ * Class RSQueueConfiguration
  */
-class Configuration implements ConfigurationInterface
+class RSQueueConfiguration extends BaseConfiguration
 {
     /**
-     * {@inheritdoc}
+     * Configure the root node.
+     *
+     * @param ArrayNodeDefinition $rootNode Root node
      */
-    public function getConfigTreeBuilder()
+    protected function setupTree(ArrayNodeDefinition $rootNode)
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('rs_queue');
-
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
@@ -49,6 +46,9 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('redis')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('cluster')
+                                    ->defaultFalse()
+                                ->end()
                                 ->scalarNode('host')
                                     ->defaultValue('127.0.0.1')
                                 ->end()
@@ -63,7 +63,5 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end();
-
-        return $treeBuilder;
     }
 }

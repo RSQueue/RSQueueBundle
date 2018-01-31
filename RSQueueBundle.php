@@ -2,15 +2,17 @@
 
 namespace RSQueueBundle;
 
+use Mmoreram\BaseBundle\BaseBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 use RSQueueBundle\DependencyInjection\RSQueueExtension;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Main RSQueueBundle class
  */
-class RSQueueBundle extends Bundle
+class RSQueueBundle extends BaseBundle
 {
     /**
      * Returns the bundle's container extension.
@@ -21,6 +23,20 @@ class RSQueueBundle extends Bundle
      */
     public function getContainerExtension()
     {
-        return new RSQueueExtension($this);
+        return new RSQueueExtension();
+    }
+
+    /**
+     * Return all bundle dependencies.
+     *
+     * Values can be a simple bundle namespace or its instance
+     *
+     * @return array
+     */
+    public static function getBundleDependencies(KernelInterface $kernel) : array
+    {
+        return [
+            FrameworkBundle::class
+        ];
     }
 }
