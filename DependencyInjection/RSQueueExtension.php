@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\DependencyInjection;
 
 use Mmoreram\BaseBundle\DependencyInjection\BaseExtension;
@@ -42,9 +44,9 @@ class RSQueueExtension extends BaseExtension
      *
      * @return string
      */
-    protected function getConfigFilesLocation() : string
+    protected function getConfigFilesLocation(): string
     {
-        return __DIR__ .'/../Resources/config';
+        return __DIR__.'/../Resources/config';
     }
 
     /**
@@ -68,7 +70,7 @@ class RSQueueExtension extends BaseExtension
      *
      * @return array Config files
      */
-    protected function getConfigFiles(array $config) : array
+    protected function getConfigFiles(array $config): array
     {
         return [
             'services',
@@ -90,7 +92,7 @@ class RSQueueExtension extends BaseExtension
      *
      * @return ConfigurationInterface|null
      */
-    protected function getConfigurationInstance() : ? ConfigurationInterface
+    protected function getConfigurationInstance(): ? ConfigurationInterface
     {
         return new RSQueueConfiguration($this->getAlias());
     }
@@ -108,12 +110,12 @@ class RSQueueExtension extends BaseExtension
      *
      * @return array
      */
-    protected function getParametrizationValues(array $config) : array
+    protected function getParametrizationValues(array $config): array
     {
         return [
             'rs_queue.queues' => $config['queues'],
             'rs_queue.serializer.class' => $config['serializer'],
-            'rs_queue.server.redis' => $config['server']['redis']
+            'rs_queue.server.redis' => $config['server']['redis'],
         ];
     }
 }

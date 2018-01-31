@@ -13,23 +13,25 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\Tests;
 
 /**
- * Class ClusterRedisTest
+ * Class ClusterRedisTest.
  */
 class ClusterRedisTest extends RSQueueFunctionalTest
 {
     /**
-     * Get redis configuration
+     * Get redis configuration.
      *
      * @return array
      */
-    static function getRedisConfiguration(): array
+    public static function getRedisConfiguration(): array
     {
         return [
             'cluster' => true,
-            'port' => 30001
+            'port' => 30001,
         ];
     }
 }

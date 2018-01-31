@@ -13,21 +13,23 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\Tests\Services;
 
 /**
- * Class ConsumerTest
+ * Class ConsumerTest.
  */
 trait ConsumerTest
 {
     /**
-     * Test that we can produce something and we can consume it
+     * Test that we can produce something and we can consume it.
      *
      * @dataProvider getPayloads
      */
     public function testBasicScenario($payload)
     {
-        $redisQueue = 'test_' . rand(0, 100000000000);
+        $redisQueue = 'test_'.rand(0, 100000000000);
         $this->produce($redisQueue, $payload);
         $this->assertEquals(
             [$redisQueue, $payload],
@@ -36,7 +38,7 @@ trait ConsumerTest
     }
 
     /**
-     * get payloads
+     * get payloads.
      */
     public function getPayloads()
     {
@@ -48,11 +50,11 @@ trait ConsumerTest
     }
 
     /**
-     * Test empty queue with timeout
+     * Test empty queue with timeout.
      */
     public function testEmptyQueueWithTimeout()
     {
-        $redisQueue = 'test_' . rand(0, 100000000000);
+        $redisQueue = 'test_'.rand(0, 100000000000);
         $this->assertEquals(
             [],
             $this->consume($redisQueue, 1)
@@ -60,7 +62,7 @@ trait ConsumerTest
     }
 
     /**
-     * Test n iterations
+     * Test n iterations.
      *
      * @param string|string[]
      *
@@ -84,12 +86,12 @@ trait ConsumerTest
     }
 
     /**
-     * Get queues
+     * Get queues.
      */
     public function getQueues()
     {
         return [
-            ['test_' . rand(0, 100000000000)],
+            ['test_'.rand(0, 100000000000)],
         ];
     }
 }

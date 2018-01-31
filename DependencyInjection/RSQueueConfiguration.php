@@ -13,13 +13,15 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\DependencyInjection;
 
 use Mmoreram\BaseBundle\DependencyInjection\BaseConfiguration;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
- * Class RSQueueConfiguration
+ * Class RSQueueConfiguration.
  */
 class RSQueueConfiguration extends BaseConfiguration
 {

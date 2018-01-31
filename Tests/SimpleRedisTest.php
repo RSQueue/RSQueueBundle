@@ -13,19 +13,21 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\Tests;
 
 /**
- * Class SimpleRedisTest
+ * Class SimpleRedisTest.
  */
 class SimpleRedisTest extends RSQueueFunctionalTest
 {
     /**
-     * Get redis configuration
+     * Get redis configuration.
      *
      * @return array
      */
-    static function getRedisConfiguration(): array
+    public static function getRedisConfiguration(): array
     {
         return [];
     }

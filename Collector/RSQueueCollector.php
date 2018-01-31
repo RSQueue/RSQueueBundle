@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\Collector;
 
 use Exception;
@@ -132,7 +134,6 @@ class RSQueueCollector extends DataCollector
     {
         $this->total = 0;
         $this->data = [
-
             'prod' => [],
             'publ' => [],
             'total' => 0,

@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\Tests;
 
 use Mmoreram\BaseBundle\Tests\BaseFunctionalTest;
@@ -24,7 +26,7 @@ use RSQueueBundle\Tests\Services\PublisherTest;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * Class RSQueueFunctionalTest
+ * Class RSQueueFunctionalTest.
  */
 abstract class RSQueueFunctionalTest extends BaseFunctionalTest
 {
@@ -37,57 +39,55 @@ abstract class RSQueueFunctionalTest extends BaseFunctionalTest
      *
      * @return KernelInterface
      */
-    protected static function getKernel() : KernelInterface
+    protected static function getKernel(): KernelInterface
     {
         return new BaseKernel(
             [RSQueueBundle::class],
             [
                 'rs_queue' => [
                     'server' => [
-                        'redis' => static::getRedisConfiguration()
-                    ]
-                ]
+                        'redis' => static::getRedisConfiguration(),
+                    ],
+                ],
             ],
             []
         );
     }
 
     /**
-     * Get redis configuration
+     * Get redis configuration.
      *
      * @return array
      */
-    abstract static function getRedisConfiguration() : array;
+    abstract public static function getRedisConfiguration(): array;
 
     /**
-     * Produce
+     * Produce.
      *
      * @param string $queue
-     * @param mixed $payload
+     * @param mixed  $payload
      */
     protected function produce(
         string $queue,
         $payload
-    )
-    {
+    ) {
         $this
             ->get('rs_queue.producer')
             ->produce($queue, $payload);
     }
 
     /**
-     * Consume
+     * Consume.
      *
      * @param string|string[] $queue
-     * @param int $timeout
+     * @param int             $timeout
      *
      * @return array
      */
     protected function consume(
         $queue,
         int $timeout = 0
-    ) : array
-    {
+    ): array {
         return $this
             ->get('rs_queue.consumer')
             ->consume($queue, $timeout);

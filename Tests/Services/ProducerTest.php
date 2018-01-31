@@ -13,17 +13,19 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace RSQueueBundle\Tests\Services;
 
 use RSQueue\Services\Producer;
 
 /**
- * Class ProducerTest
+ * Class ProducerTest.
  */
 trait ProducerTest
 {
     /**
-     * Test that publisher service exists
+     * Test that publisher service exists.
      */
     public function testProducerExists()
     {
