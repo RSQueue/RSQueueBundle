@@ -74,7 +74,7 @@ class RSQueueExtension extends BaseExtension
     {
         return [
             'services',
-            'collector',
+            ['collector', $config['collector']['enable']],
             'redis',
             'serializers',
         ];
